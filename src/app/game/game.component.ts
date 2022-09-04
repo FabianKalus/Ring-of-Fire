@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { GameInfoComponent } from '../game-info/game-info.component';
+
+import { Title } from '@angular/platform-browser';
+import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: 'app-game',
@@ -11,41 +15,60 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 })
 export class GameComponent implements OnInit {
   pickCardAnimation = false;
-  currendCard: any = '';
+  currentCard: any = '';
   game: Game;
+  gameinfo;
+  displayStyle = "none";
+  
 
-  constructor(game: Game, public dialog: MatDialog) { 
+
+  constructor(game: Game, public dialog: MatDialog, gameinfo: GameInfoComponent) {
     this.game = game;
+    this.gameinfo = gameinfo;
   }
 
   ngOnInit(): void {
-    console.log(this.game)
+    console.log(this.currentCard)
 
   }
 
   newGame() {
-  this.game = new Game();
+    this.game = new Game();
   }
 
   takeCard() {
-    if(!this.pickCardAnimation) {
-    this.currendCard = this.game.stack.pop();
-    console.log(this.currendCard)
-    this.pickCardAnimation = true;
-    
-  }
-  setTimeout(() => {
-      this.game.playedCards.push(this.currendCard);
-      this.pickCardAnimation = false;
-    }, 1000 );
+    if(this.game.players.length > 0) {
+      if (!this.pickCardAnimation) {
+        this.currentCard = this.game.stack.pop();
+        this.pickCardAnimation = true;
+        
+      }
+      this.game.currentPlayer++;
+      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+      setTimeout(() => {
+        this.game.playedCards.push(this.currentCard);
+        this.pickCardAnimation = false;
+      }, 1000);
+    } else {
+      this.displayStyle = "block";
+     
+    }
+
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((result: string) => {
-      this.game.players.push(result);
+      if (result && result.length > 0) {
+        this.game.players.push(result);
+      }
     });
+  }
+
+  
+  closePopup() {
+    this.displayStyle = "none";
   }
 
 }

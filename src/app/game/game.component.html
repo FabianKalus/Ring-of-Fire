@@ -7,10 +7,31 @@
         <img (click)="takeCard()"  class="top-card" style="right: 25px;" src="../../assets/img/cards/card_cover.png">
         
         <img *ngFor="let card of game.playedCards" class="played-card" src="../../assets/img/cards/{{ card }}.png">
-        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right: 25px;" src="../../assets/img/cards/{{ currendCard }}.png">
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right: 25px;" src="../../assets/img/cards/{{ currentCard }}.png">
     </div>
 </div>
 
 <button mat-fab color="primary" (click)="openDialog()" class="button-add">
     <mat-icon>add</mat-icon>
 </button>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalVerticalTitle">ADD PLAYER</h5>
+                <button type="button" (click)="closePopup()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>You have to add a player!!!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closePopup()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                    
+
+<app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
