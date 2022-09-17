@@ -8,7 +8,14 @@
         <input matInput [(ngModel)]="name">
     </mat-form-field>
 </div>
+<mat-form-field appearance="fill">
+    <mat-label>Selct profile picture</mat-label>
+    <mat-select [(ngModel)]="imageResult">
+        <mat-option *ngFor="let profilImage of profilImages" [value]="profilImage.src"><img class="chooseImg" src="{{ profilImage.src }}">{{ profilImage.name }}</mat-option>
+    </mat-select>
+</mat-form-field>
+
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+    <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="{name, imageResult}" cdkFocusInitial>Ok</button>
 </div>

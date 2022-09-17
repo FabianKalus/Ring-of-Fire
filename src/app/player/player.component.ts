@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-player',
@@ -8,10 +9,18 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PlayerComponent implements OnInit {
   @Input() name: any;
   @Input() playerActive: boolean = false;
+  @Input() icon: any;
+  @Input() imageResult: any;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    console.log('abddav', this.imageResult);
+    console.log('balba', this.name)
   }
+
+  openDialogEditPlayer(): void {
+  }
+
 
 }

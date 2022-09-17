@@ -1,9 +1,22 @@
 export class Game {
+    // public players: string[] = ['asdfasss'];
+    // public stack: string[] = [];
+    // public playedCards: string[] = [];
+    // // public playedCards2 = [
+    // //     {name: string = ''},
+    // //     {style: any = ''},
+    // // ];
+    // public currentPlayer: number = 0;
     public players: string[] = [];
+    public imageResults: string[] = [];
     public stack: string[] = [];
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
-
+    public pickCardAnimation: boolean = false;
+    public currentCard: string | undefined = '';
+    public stackCount: number = 10;
+    public cardTurn: number = 0;
+    public visibleStack: string[] = [];
 
 constructor() {
     for(let i = 1; i < 14; i++) {
@@ -15,6 +28,19 @@ constructor() {
 
     this.shuffle(this.stack)
 }
+
+public toJson() {
+    return {
+      players: this.players,
+      stack: this.stack,
+      playedCards: this.playedCards,
+      currentPlayer: this.currentPlayer,
+
+      imageResults: this.imageResults,
+      pickCardAnimation: this.pickCardAnimation,
+      currentCard: this.currentCard,
+    };
+  }
 
 shuffle(array: string[]) {
     let currentIndex = array.length, temporaryValue, randomIndex;
