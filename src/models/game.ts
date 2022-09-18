@@ -1,12 +1,4 @@
 export class Game {
-    // public players: string[] = ['asdfasss'];
-    // public stack: string[] = [];
-    // public playedCards: string[] = [];
-    // // public playedCards2 = [
-    // //     {name: string = ''},
-    // //     {style: any = ''},
-    // // ];
-    // public currentPlayer: number = 0;
     public players: string[] = [];
     public imageResults: string[] = [];
     public stack: string[] = [];
@@ -14,19 +6,20 @@ export class Game {
     public currentPlayer: number = 0;
     public pickCardAnimation: boolean = false;
     public currentCard: string | undefined = '';
-    public stackCount: number = 10;
-    public cardTurn: number = 0;
-    public visibleStack: string[] = [];
-
+    public randomCardTurn: number[] = [];
+ 
 constructor() {
     for(let i = 1; i < 14; i++) {
         this.stack.push('ace_' + i);
         this.stack.push('clubs_' + i);
         this.stack.push('diamonds_' + i);
         this.stack.push('hearts_' + i);
-    } 
-
+    }
     this.shuffle(this.stack)
+
+    for(let r = 0; r < 52; r++){
+        this.randomCardTurn.push( Math.floor(Math.random() * 360));
+    }
 }
 
 public toJson() {

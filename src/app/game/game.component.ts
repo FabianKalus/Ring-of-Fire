@@ -32,35 +32,14 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.newGame();
     this.loadGame();
+
+    console.log(this.game.randomCardTurn)
   }
 
   newGame() {
     this.game = new Game();
     this.loadGame();
   }
-
-  
-
-  // takeCard() {
-  //   if(this.game.players.length > 0) {
-  //     if (!this.pickCardAnimation) {
-  //       this.currentCard = this.game.stack.pop();
-  //       this.pickCardAnimation = true;
-        
-  //     }
-  //     this.game.currentPlayer++;
-  //     this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-  //     setTimeout(() => {
-  //       this.game.playedCards.push(this.currentCard);
-  //       console.log(this.game.playedCards);
-  //       this.pickCardAnimation = false;
-  //     }, 1000);
-  //   } else {
-  //     this.displayStyle = "block";
-     
-  //   }
-
-  // }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
@@ -80,7 +59,6 @@ export class GameComponent implements OnInit {
     this.displayStyle = "none";
   }
 
-
   loadGame() {
     this.route.params.subscribe(async param => {
       this.gameId = param['id'];
@@ -94,9 +72,6 @@ export class GameComponent implements OnInit {
         this.game.currentPlayer = game['currentPlayer'];
         this.game.pickCardAnimation = game['pickCardAnimation'];
         this.game.currentCard = game['currentCard'];
-        // this.game.visibleStack = game['visibleStack'];
-        // this.game.stackCount = game['stackCount'];
-        // this.game.cardTurn = game['cardTurn'];
       })
     });
   }
@@ -113,14 +88,12 @@ export class GameComponent implements OnInit {
       this.game.currentCard = this.game.stack.pop();
       this.saveGame();
       this.playAnimation();
-      this.turnPlayedCard();
+     
     }
     } else {
     this.displayStyle = "block";
      }
   }
-
-
 
   playAnimation() {
     this.game.pickCardAnimation = true;
@@ -136,27 +109,5 @@ export class GameComponent implements OnInit {
   }
 
 
-  turnPlayedCard() {
-    setTimeout(() => {
-      this.game.cardTurn++
-      this.game.cardTurn = this.game.cardTurn % 3;
-      this.saveGame();
-    }, 1000);
-    
-  }
-
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(DialogAddPlayerComponent
-  //   , {   data: {name: this.playerData.name, icon: this.playerData.icon}}
-  //   );
-
-  //   dialogRef.afterClosed().subscribe(data => {
-  //     if (data  > 0) {
-  //       this.game.players.push(data.name);
-  //       this.game.playersIcon.push(data.icon);
-  //       this.saveGame();
-  //     }
-  //   });
-  // }
-
+ 
 }
