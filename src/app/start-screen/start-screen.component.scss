@@ -15,7 +15,6 @@
     height: 100vh;
     width: 100vw;
     object-fit: contain;
-    // transform: translate(2%, 0);
 }
 
 .start-button {
@@ -37,7 +36,7 @@
 .start-header {
     position: absolute;
     top: 30px;
-    color: rgb(12, 16, 27);
+    color: rgb(108, 108, 108);
     font-weight: bold;
     font-size: 60px;
     font-family: serif;
@@ -59,4 +58,27 @@
                   10px -30px 4px #690D00,
                  -10px -32px 4px #3E0600
 	        ;
+}
+
+@media (max-width: 960px) {
+    .start-header {
+        top: 8vh;
+        font-size: 50px;
+        color: rgb(108, 108, 108);
+    }
+    .start-img{
+        height: 65vh;
+        width: 110vw;
+        margin-top: auto;
+        margin-bottom: auto;
+        object-fit: cover;
+        transform: translate(5vw,0);
+    }
+    .start-button {
+        width: 60vw;
+        transform: translate(-50%, 50%);
+    }
+    .start-screen {
+        overflow: hidden;
+    }
 }
