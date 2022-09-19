@@ -111,6 +111,13 @@
     right: 100px;
 }
 
+app-player {
+    cursor: pointer;
+    &:hover {
+        filter: brightness(1.25)
+    }
+}
+
 @media (max-width: 960px) {
     .pin-bottom {
         left: 0;

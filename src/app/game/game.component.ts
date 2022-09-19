@@ -6,6 +6,7 @@ import { GameInfoComponent } from '../game-info/game-info.component';
 import { Firestore, doc, updateDoc, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 @Component({
@@ -108,6 +109,18 @@ export class GameComponent implements OnInit {
     }, 1000);
   }
 
+  editPlayer(playerId: number) {
+    console.log('edplayer', playerId);
 
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+
+    dialogRef.afterClosed().subscribe((change: string) => {
+      console.log('received change', change);
+      this.game.imageResults[playerId] = 'assets/img/' + change;
+      this.saveGame();
+    })
+
+
+  }
  
 }

@@ -2,7 +2,9 @@
 <div class="position-players">
     <app-player *ngFor="let player of game.players; let i = index" 
  [playerActive]="i == game.currentPlayer" 
- [name]="player" [imageResult]="game.imageResults[i]" ></app-player>
+ [name]="player" [imageResult]="game.imageResults[i]" 
+ (click)="editPlayer(i)"
+ ></app-player>
 </div>
 <div class="game-field">
     <div class="card-stack">
