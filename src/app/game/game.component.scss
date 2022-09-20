@@ -30,8 +30,6 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -70%) scale(1.1);
-    z-index: 9999;
-
 }
 
 .played-cards-stack {
@@ -99,8 +97,8 @@
 
 .button-add {
     position: absolute;
-    right: 32px;
-    bottom: 32px;
+    right: 23px;
+    bottom: 46px;
     z-index: 9999;
 }
 
@@ -125,6 +123,13 @@ app-player {
     object-fit: cover;
     cursor: pointer;
     }
+}
+
+.preload-image {
+    opacity: 0;
+    z-index: -99999;
+    height: 0px;
+    width: 0px;
 }
 
 @media (max-width: 960px) {

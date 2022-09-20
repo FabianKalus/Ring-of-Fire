@@ -1,0 +1,66 @@
+.start-screen {
+  background-color: rgb(12, 16, 27);
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.start-img {
+  height: 100vh;
+  width: 100vw;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.start-button {
+  height: auto;
+  width: 15vw;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-60%, 70%);
+  cursor: pointer;
+}
+.start-button:hover {
+  filter: brightness(1.25);
+}
+
+.start-header {
+  position: absolute;
+  top: 30px;
+  color: rgb(108, 108, 108);
+  font-weight: bold;
+  font-size: 60px;
+  font-family: serif;
+  text-shadow: 0px 0px 4px white, 2px -2px 4px #F8FF9D, -4px -4px 8px #F5FE5C, 4px -6px 8px #FDDB33, -4px -8px 8px #FFC126, 4px -10px 8px #FF7808, -4px -12px 8px #F95801, 6px -14px 8px #FE7606, -6px -16px 8px #FD5C01, 6px -18px 6px #E54600, -8px -20px 6px #D23700, 8px -22px 6px #B82B00, -8px -24px 6px #A11301, 8px -26px 6px #981D01, -10px -28px 4px #851200, 10px -30px 4px #690D00, -10px -32px 4px #3E0600;
+}
+
+@media (max-width: 960px) {
+  .start-header {
+    top: 8vh;
+    font-size: 50px;
+    color: rgb(108, 108, 108);
+  }
+  .start-img {
+    height: 65vh;
+    width: 110vw;
+    margin-top: auto;
+    margin-bottom: auto;
+    -o-object-fit: cover;
+       object-fit: cover;
+    transform: translate(5vw, 0);
+  }
+  .start-button {
+    width: 60vw;
+    transform: translate(-50%, 50%);
+  }
+  .start-screen {
+    overflow: hidden;
+  }
+}/*# sourceMappingURL=start-screen.component.css.map */

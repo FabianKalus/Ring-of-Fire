@@ -1,0 +1,213 @@
+.game-field {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  background-image: url("../../assets/img/board.jpg");
+  position: relative;
+}
+
+.card-stack {
+  position: relative;
+  margin-left: 100px;
+  top: 30%;
+}
+.card-stack img {
+  position: absolute;
+  width: 140px;
+}
+
+.top-card {
+  cursor: pointer;
+  transition: all 125ms ease-in-out;
+}
+.top-card:hover {
+  transform: scale(1.1) translateY(-10px);
+}
+
+.played-card {
+  position: absolute;
+  width: 140px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%) scale(1.1);
+  z-index: 9999;
+}
+
+.played-cards-stack {
+  position: relative;
+  top: 25%;
+}
+
+.pick-card {
+  position: absolute;
+  width: 140px;
+  -webkit-animation: pick-card-animation 1s ease-in-out;
+          animation: pick-card-animation 1s ease-in-out;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%) scale(1.2);
+}
+
+@-webkit-keyframes pick-card-animation {
+  0% {
+    transform: scale(1) translate(0%, -70%);
+    left: 120px;
+  }
+  40% {
+    transform: scale(1.7) translate(0%, -70%);
+    left: 120px;
+  }
+  60% {
+    transform: scale(1.7) translate(-50%, -70%);
+    left: 40%;
+  }
+  100% {
+    transform: scale(1.1) translate(-50%, -70%);
+    left: 50%;
+    top: 50%;
+  }
+}
+
+@keyframes pick-card-animation {
+  0% {
+    transform: scale(1) translate(0%, -70%);
+    left: 120px;
+  }
+  40% {
+    transform: scale(1.7) translate(0%, -70%);
+    left: 120px;
+  }
+  60% {
+    transform: scale(1.7) translate(-50%, -70%);
+    left: 40%;
+  }
+  100% {
+    transform: scale(1.1) translate(-50%, -70%);
+    left: 50%;
+    top: 50%;
+  }
+}
+@-webkit-keyframes pick-card-animation-mobil {
+  0% {
+    transform: scale(1) translate(0%, -70%);
+    left: 50px;
+  }
+  40% {
+    transform: scale(1.7) translate(0%, -70%);
+  }
+  60% {
+    transform: scale(1.7) translate(0%, -70%);
+  }
+  100% {
+    transform: scale(1.1) translate(0%, -70%);
+    left: 50%;
+    top: 50%;
+  }
+}
+@keyframes pick-card-animation-mobil {
+  0% {
+    transform: scale(1) translate(0%, -70%);
+    left: 50px;
+  }
+  40% {
+    transform: scale(1.7) translate(0%, -70%);
+  }
+  60% {
+    transform: scale(1.7) translate(0%, -70%);
+  }
+  100% {
+    transform: scale(1.1) translate(0%, -70%);
+    left: 50%;
+    top: 50%;
+  }
+}
+.position-players {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.button-add {
+  position: absolute;
+  right: 32px;
+  bottom: 32px;
+  z-index: 9999;
+}
+
+.pin-bottom {
+  position: absolute;
+  bottom: 32px;
+  left: 100px;
+  right: 100px;
+}
+
+app-player {
+  cursor: pointer;
+}
+app-player:hover {
+  filter: brightness(1.25);
+}
+
+.game-over img {
+  width: 100vw;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .pin-bottom {
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .button-add {
+    right: 12vw;
+    transform: translate(50%, 50%);
+    bottom: 6.5vh;
+  }
+  .card-stack {
+    margin-left: 50px;
+    top: 60vh;
+  }
+  .card-stack img {
+    width: 100px;
+  }
+  .played-card {
+    width: 110px;
+  }
+  .played-cards-stack {
+    top: 30%;
+  }
+  .pick-card {
+    position: absolute;
+    width: 120px;
+    -webkit-animation: pick-card-animation-mobil 1s ease-in-out;
+            animation: pick-card-animation-mobil 1s ease-in-out;
+    left: 50%;
+    top: 65vh;
+    transform: translate(-50%, -70%) scale(1.2);
+  }
+  .position-players {
+    display: flex;
+    left: 0px;
+    right: auto;
+    margin-left: 0px;
+    width: 100vw;
+    overflow: hidden;
+  }
+  .game-over {
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    justify-content: center;
+  }
+  .game-over img {
+    height: auto;
+    width: 120vw;
+  }
+}/*# sourceMappingURL=game.component.css.map */

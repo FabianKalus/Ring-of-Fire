@@ -1,0 +1,56 @@
+.player {
+  display: flex;
+  align-items: center;
+  background-color: darkgray;
+  width: 300px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.player span {
+  font-size: 24px;
+  margin-left: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.player img {
+  width: 45px;
+  height: 45px;
+  margin: 2px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 50%;
+}
+
+.player-active {
+  background-color: lawngreen !important;
+}
+
+@media (max-width: 960px) {
+  .player {
+    width: calc(25vw - 10px);
+    flex-direction: column-reverse;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 50px;
+    margin-top: 0;
+    margin-left: 10px;
+    border-bottom-right-radius: 50px;
+  }
+  .player span {
+    margin-left: 0px;
+    margin-top: 10px;
+    font-size: 20px;
+    margin-right: 0px;
+  }
+  .player-active {
+    background-color: lawngreen !important;
+    position: absolute;
+    right: 0px;
+    z-index: 2;
+  }
+}/*# sourceMappingURL=player.component.css.map */

@@ -1,0 +1,8 @@
+.chooseImg {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-right: 15px;
+}/*# sourceMappingURL=dialog-add-player.component.css.map */
