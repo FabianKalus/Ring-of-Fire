@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
-import { GameInfoComponent } from '../game-info/game-info.component';
 import { Firestore, doc, updateDoc, docData, collection, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -18,15 +17,13 @@ import { Router } from '@angular/router';
 
 export class GameComponent implements OnInit {
 
-  displayStyle = "none";
-  
+  displayStyle = "none";  
   game: Game;
   noCardLeft: boolean = false;
   gameId: string;
   game$: Observable<any>;
   gameOver = false;
- 
-  icons = ['src/assets/img/tiger.png', 'src/assests/img/monkey.png'];
+
 
 
   constructor(private route: ActivatedRoute, private firestore: Firestore, public dialog: MatDialog, 
@@ -36,8 +33,6 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.newGame();
     this.loadGame();
-
-    console.log(this.game.randomCardTurn)
   }
 
   newGame() {
@@ -45,19 +40,22 @@ export class GameComponent implements OnInit {
     this.loadGame();
   }
 
+  // adding new Player
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogAddPlayerComponent);
-
+    if(this.game.players.length > 7) {
+     alert('You can´t add another player. The maximum is 8 players!');
+     close(); 
+    }
+    else{const dialogRef = this.dialog.open(DialogAddPlayerComponent);
     dialogRef.afterClosed().subscribe((newPlayer: any) => {
       if (newPlayer && newPlayer.name.length > 0) {
         this.game.players.push(newPlayer.name);
         this.game.imageResults.push(newPlayer.imageResult);
-        console.log(newPlayer.imageResult)
         this.saveGame();
       }
     });
+    }
   }
-
   
   closePopup() {
     this.displayStyle = "none";
@@ -85,7 +83,7 @@ export class GameComponent implements OnInit {
     updateDoc(docRef, this.game.toJson());
   }
 
-
+  // take card from the stack
   takeCard() {
     if(this.game.stack.length == 0) {
       this.gameOver = true;
@@ -94,13 +92,13 @@ export class GameComponent implements OnInit {
       this.game.currentCard = this.game.stack.pop();
       this.saveGame();
       this.playAnimation();
-     
     }
     } else {
     this.displayStyle = "block";
      }
   }
 
+  // card draw animation
   playAnimation() {
     this.game.pickCardAnimation = true;
     this.game.currentPlayer++;
@@ -115,10 +113,7 @@ export class GameComponent implements OnInit {
   }
 
   editPlayer(playerId: number) {
-    console.log('edplayer', playerId);
-
     const dialogRef = this.dialog.open(EditPlayerComponent);
-
     dialogRef.afterClosed().subscribe((change: string) => {
       if(change){
         if(change == 'DELETE') {
@@ -128,12 +123,9 @@ export class GameComponent implements OnInit {
         } else {
       this.game.imageResults[playerId] = 'assets/img/' + change;
       this.saveGame();}}
-    })
-
-
+    });
   }
  
-
   newGameAfterOver() {
     let game = new Game();
     const coll = collection(this.firestore, 'games');

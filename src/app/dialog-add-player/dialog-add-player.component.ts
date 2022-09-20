@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModel } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatSelectModule } from '@angular/material/select';
 
 interface Profilimg {
   value: string;
@@ -16,6 +14,7 @@ interface Profilimg {
   styleUrls: ['./dialog-add-player.component.scss']
 })
 export class DialogAddPlayerComponent implements OnInit {
+
   name: string = '';
   imageResult: string = '';
   profilImages: Profilimg[] = [
@@ -25,18 +24,13 @@ export class DialogAddPlayerComponent implements OnInit {
     {value: 'giraffe-3', name: 'giraffe', src: 'assets/img/giraffe.png'},
   ];
 
-
-
-  constructor(private dialog: MatDialog, public dialogRef: MatDialogRef<DialogAddPlayerComponent>) { }
+  constructor(public dialogRef: MatDialogRef<DialogAddPlayerComponent>) { }
 
   ngOnInit(): void {
   }
 
   onNoClick() {
     this.dialogRef.close();
-    
   }
-
- 
 
 }

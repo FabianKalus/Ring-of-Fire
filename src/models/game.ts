@@ -9,7 +9,7 @@ export class Game {
     public randomCardTurn: number[] = [];
  
 constructor() {
-    for(let i = 1; i < 2; i++) {
+    for(let i = 1; i < 14; i++) {
         this.stack.push('ace_' + i);
         this.stack.push('clubs_' + i);
         this.stack.push('diamonds_' + i);
@@ -28,7 +28,6 @@ public toJson() {
       stack: this.stack,
       playedCards: this.playedCards,
       currentPlayer: this.currentPlayer,
-
       imageResults: this.imageResults,
       pickCardAnimation: this.pickCardAnimation,
       currentCard: this.currentCard,
@@ -41,7 +40,6 @@ shuffle(array: string[]) {
     while (0 !== currentIndex) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
