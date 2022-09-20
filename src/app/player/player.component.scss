@@ -12,14 +12,17 @@
     overflow: hidden;
 
     span {
-        font-size: 28px;
+        font-size: 24px;
         margin-left: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     img {
-        width: 60px;
-        height: 60px;
-        margin: 3px;
+        width: 45px;
+        height: 45px;
+        margin: 2px;
         object-fit: contain;
         border-radius: 50%;
     }

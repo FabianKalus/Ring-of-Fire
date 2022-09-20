@@ -3,10 +3,11 @@ import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { GameInfoComponent } from '../game-info/game-info.component';
-import { Firestore, doc, updateDoc, docData } from '@angular/fire/firestore';
+import { Firestore, doc, updateDoc, docData, collection, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { EditPlayerComponent } from '../edit-player/edit-player.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,15 +20,17 @@ export class GameComponent implements OnInit {
 
   displayStyle = "none";
   
-  game!: Game;
+  game: Game;
   noCardLeft: boolean = false;
-  gameId!: string;
-  game$!: Observable<any>;
+  gameId: string;
+  game$: Observable<any>;
+  gameOver = false;
  
   icons = ['src/assets/img/tiger.png', 'src/assests/img/monkey.png'];
 
 
-  constructor(private route: ActivatedRoute, private firestore: Firestore, public dialog: MatDialog) {  }
+  constructor(private route: ActivatedRoute, private firestore: Firestore, public dialog: MatDialog, 
+    private router: Router,) {  }
 
 
   ngOnInit(): void {
@@ -84,7 +87,9 @@ export class GameComponent implements OnInit {
 
 
   takeCard() {
-    if(this.game.players.length > 0) {
+    if(this.game.stack.length == 0) {
+      this.gameOver = true;
+    } else if(this.game.players.length > 0) {
     if (!this.game.pickCardAnimation && this.game.players.length > 0) {
       this.game.currentCard = this.game.stack.pop();
       this.saveGame();
@@ -115,12 +120,26 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(EditPlayerComponent);
 
     dialogRef.afterClosed().subscribe((change: string) => {
-      console.log('received change', change);
+      if(change){
+        if(change == 'DELETE') {
+          this.game.imageResults.splice(playerId, 1);
+          this.game.players.splice(playerId, 1);
+          this.saveGame();
+        } else {
       this.game.imageResults[playerId] = 'assets/img/' + change;
-      this.saveGame();
+      this.saveGame();}}
     })
 
 
   }
  
+
+  newGameAfterOver() {
+    let game = new Game();
+    const coll = collection(this.firestore, 'games');
+    addDoc(coll, game.toJson()).then(gameInfo => {
+      this.router.navigateByUrl('/game/' + gameInfo.id);
+    });    
+    this.gameOver = false;
+  }
 }

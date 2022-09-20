@@ -118,6 +118,15 @@ app-player {
     }
 }
 
+.game-over {
+    img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    cursor: pointer;
+    }
+}
+
 @media (max-width: 960px) {
     .pin-bottom {
         left: 0;
@@ -158,6 +167,18 @@ app-player {
        width: 100vw;
        overflow: hidden;
     }
-
+    .game-over {
+        background-color: black;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        justify-content: center;
+        img {
+            height: auto;
+            width: 120vw;
+        }
+    }
     
 }
