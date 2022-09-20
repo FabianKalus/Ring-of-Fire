@@ -52,8 +52,9 @@
     }
     .player-active {
         background-color: lawngreen!important;
-        position: absolute;
-        right: 0px;
-        z-index: 2;
+        position: absolute!important;
+        left: auto;
+        right: 0px!important;
+        z-index: 2!important;
     }
 }
