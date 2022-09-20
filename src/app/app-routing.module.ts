@@ -4,7 +4,7 @@ import { GameComponent } from './game/game.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
 
 const routes: Routes = [
-  {path: 'ringOfFire/', component: StartScreenComponent},
+  {path: '', component: StartScreenComponent},
   {path: 'game/:id', component: GameComponent},
 ];
 
