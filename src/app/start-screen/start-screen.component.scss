@@ -19,17 +19,16 @@
 
 .start-button {
     height: auto;
-    width: 15vw;
+    width: 11vw;
     object-fit: contain;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-60%, 70%);
+    bottom: 20px;
+    transform: translate(-60%, 0%);
     cursor: pointer;
 
     &:hover {
-        filter: brightness(1.25);
-
+        filter: brightness(1.525);
     }
 }
 
